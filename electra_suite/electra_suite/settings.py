@@ -29,7 +29,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-CORS_ALLOW_HEADERS = "access-control-allow-origin"
 
 
 INSTALLED_APPS = [
@@ -59,6 +58,8 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
+
+CORS_ALLOW_HEADERS = "*"
 
 ROOT_URLCONF = 'electra_suite.urls'
 
