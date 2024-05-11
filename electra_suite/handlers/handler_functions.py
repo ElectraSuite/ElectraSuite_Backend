@@ -9,6 +9,7 @@ def handle_phasor_plot(args):
     plt = visu.phasorplot(phasors_, legend = True, labels = args)
     plt.show()
 
+
 # Delta-Wye converter
 def dynetz_handler(args):
     # splitting each argument on basis of ",". "#" is ignored.
@@ -23,7 +24,32 @@ def dynetz_handler(args):
     dic = {"delta" : args[0],
            "wye" : args[1],
            "round": 3}
-    return str(dynetz(**dic))
+    result = [str(i) for i in dynetz(**dic)]
+    return result
+    
+
+
+# Induction Machine circle diagram
+def induction_motor_circle_handler(args):
+    arr = args[0].split(",")
+    open_circuit_test_data = {"V0":float(arr[0]), "I0":float(arr[1]), "W0":float(arr[2])}
+
+    arr2 = args[1].split(",")
+    blocked_rotor_test_data = {"Vsc":float(arr2[0]), "Isc":float(arr2[1]), "Wsc":float(arr2[2])}
+
+    visu.InductionMotorCircle(
+        no_load_data=open_circuit_test_data,
+        blocked_rotor_data=blocked_rotor_test_data,
+        output_power=float(args[2]),
+        torque_ration=float(args[3]),
+        frequency=args[4],
+        poles=int(args[5])
+    )
+
+    return "Induction Motor Circle Diagram Plotted"
+    
+
+
 
 if __name__ == "__main__":
     args_phasor = ["68,0", "72,120", "53,-120"]
@@ -31,4 +57,5 @@ if __name__ == "__main__":
 
     args_dynetz = ["3+2j,5+8j,3j", "#"]
     print(dynetz_handler(args_dynetz))
+
 
