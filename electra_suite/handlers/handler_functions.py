@@ -2,13 +2,14 @@ from electricpy import phasors
 from electricpy import visu
 from electricpy import dynetz
 
-
+# Phasor Plot drawing
 def handle_phasor_plot(args):
     args = [[float(j) for j in i.split(",")] for i in args]
     phasors_ = phasors.phasorlist(args)
     plt = visu.phasorplot(phasors_, legend = True, labels = args)
     plt.show()
 
+# Delta-Wye converter
 def dynetz_handler(args):
     # splitting each argument on basis of ",". "#" is ignored.
     args = [i.split(",") for i in args]

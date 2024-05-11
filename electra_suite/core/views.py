@@ -16,4 +16,4 @@ def post(request):
         print("checking", type(request_body), request_body)
 
     result = mapping.map_[request_body["name"]]["function"](request_body["params"])
-    return  Response("chal gaya")
+    return  Response(result)
