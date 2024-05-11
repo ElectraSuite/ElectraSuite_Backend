@@ -23,7 +23,7 @@ def dynetz_handler(args):
     dic = {"delta" : args[0],
            "wye" : args[1],
            "round": 3}
-    return dynetz(**dic)
+    return str(dynetz(**dic))
 
 if __name__ == "__main__":
     args_phasor = ["68,0", "72,120", "53,-120"]
