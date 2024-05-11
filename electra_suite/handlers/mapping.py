@@ -10,5 +10,10 @@ map_ = {
     "delta_wye_converter": {
         "function": dynetz_handler,
         "description": "This function is designed to act as the conversion utility to transform delta-connected impedance values to wye- connected and vice-versa."
+    },
+    
+    "circle_diagram": {
+        "function": induction_motor_circle_handler,
+        "description": "This function is used to generate the induction motor circle diagram. It can also find torque line, desired output power-point, etc."
     }
 }
