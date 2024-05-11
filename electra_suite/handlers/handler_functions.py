@@ -37,14 +37,17 @@ def induction_motor_circle_handler(args):
     arr2 = args[1].split(",")
     blocked_rotor_test_data = {"Vsc":float(arr2[0]), "Isc":float(arr2[1]), "Wsc":float(arr2[2])}
 
-    visu.InductionMotorCircle(
+    plotter = visu.InductionMotorCircle(
         no_load_data=open_circuit_test_data,
         blocked_rotor_data=blocked_rotor_test_data,
         output_power=float(args[2]),
         torque_ration=float(args[3]),
-        frequency=args[4],
+        frequency=int(args[4]),
         poles=int(args[5])
-    )
+    ).plot()
+
+    plotter.show()
+
 
     return "Induction Motor Circle Diagram Plotted"
     
@@ -52,10 +55,13 @@ def induction_motor_circle_handler(args):
 
 
 if __name__ == "__main__":
-    args_phasor = ["68,0", "72,120", "53,-120"]
-    handle_phasor_plot(args_phasor)
+    # args_phasor = ["68,0", "72,120", "53,-120"]
+    # handle_phasor_plot(args_phasor)
 
-    args_dynetz = ["3+2j,5+8j,3j", "#"]
-    print(dynetz_handler(args_dynetz))
+    # args_dynetz = ["3+2j,5+8j,3j", "#"]
+    # print(dynetz_handler(args_dynetz))
+
+    args_circle_diag = ["400,9,1310", "200,50,7100", "15000", "1", "50", "4"]
+    induction_motor_circle_handler(args_circle_diag)
 
 
