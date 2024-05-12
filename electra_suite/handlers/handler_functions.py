@@ -1,3 +1,4 @@
+import base64
 from electricpy import phasors
 from electricpy import visu
 from electricpy import dynetz
@@ -7,7 +8,12 @@ def handle_phasor_plot(args):
     args = [[float(j) for j in i.split(",")] for i in args]
     phasors_ = phasors.phasorlist(args)
     plt = visu.phasorplot(phasors_, legend = True, labels = args)
-    plt.show()
+    plt.savefig("plot.png")
+    with open("plot.png", 'rb') as fin:
+        read_in = fin.read()
+        b64_data = base64.b64encode(read_in)
+
+    return b64_data
 
 
 # Delta-Wye converter
@@ -46,10 +52,12 @@ def induction_motor_circle_handler(args):
         poles=int(args[5])
     ).plot()
 
-    plotter.show()
+    plotter.savefig("plot.png")
+    with open("plot.png", 'rb') as fin:
+        read_in = fin.read()
+        b64_data = base64.b64encode(read_in)
 
-
-    return "Induction Motor Circle Diagram Plotted"
+    return b64_data
     
 
 
